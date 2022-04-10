@@ -1,0 +1,22 @@
+Pasos para realizar el TP 0
+
+Primero descargue e instalé según la guía: MinGW (https://josemariasola.github.io/papers/Compiladores,%20Editores%20y%20Entornos%20de%20Desarrollo.pdf)
+Posteriormente realicé la comprobación de instalación y me arrojó todos los resultados correctos
+Luego instalé el VS 
+Configuré el VS y le instalé los siguientes drivers de C/C++ para poder compilar/debugear/crear/ejecutar programas en c/c++
+   "C/c++ Themes" "C/C++ Runner" "C/C++ extension pack" "C/C++ Debugging w/ flags" "C/C++ compile run" "C/C++ build task" "C/C++" "Better C++ Syntax"
+Tuve que instalar esos drivers ya que no sabía cual me creaba el "hello.exe", ya que usando el comando ./hello.exe posterior a la compilación me saltaba que no existía el .exe y si yo me fijaba en la carpeta donde guardo el trabajo aparecia una carpeta de VS y un archivo .txt de de hello.txt (Creado por mi y correspondiente al código del programa Hola Mundo)
+Luego de instalar todos esos drivers y escribir mi código con la carpeta de SSl/Holamundo ya dirigida realicé los siguientes pasos:
+
+Escribí el código -> Lo guardé en la carpeta del TP "Hola Mundo" -> Fui a la solapa de arriba que dice "TERMINAL" -> 
+En terminal, seleccioné "EJECUTAR TAREA" -> El ejecutor seleccionado era "c/c++ gcc.exe compilar archivo activo"
+
+Luego de realizar estos pasos, mi archivo .txt que contenia el código, se creó a través de la compilación el archivo .exe correspondiente a mi .txt con el código del Hola Mundo.
+
+Posterior a crear el archivo y corroborarlo yo, yendo a la carpeta en la computadora y buscandolo, realicé lo siguiente para ver si estaba correctamente hecho.
+
+Abri denuevo mi VS y fui al código, en el mismo fui a la solapa "Terminal" -> "Nueva terminal" -> y escribí "./hello.exe" y posteriormente se runeo el .exe arrojando Hello, World! tal y como dicta el código.
+
+Luego cree un readme(este archivo) en el mismo VS. que explica todo lo anterior
+
+Para pushear mi código junto al read.me lo que voy a realizar manualmente. Anteriormente (1 semana atrás) subí un hello world con un readme de prueba por si tenía alguna duda y consultarla en clase. Esta es la entrega, ya que no se borrar archivos de github lo aclaro en este archivo.
