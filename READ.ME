@@ -1,0 +1,155 @@
+1 A B C
+Para comenzar con el trabajo de fases de traduccion y errores lo primero que vamos a hacer es crear una carpeta donde se desarrollará
+el presente trabajo, luego, empezaremos a seguir el paso a paso del archivo pdf:
+https://josemariasola.github.io/ssl/assignments/2021/Ssl%20Assignments.pdf#page=17
+
+Comenzamos haciendo un copy paste del hell2.c 
+
+#include <stdio.h>
+int/*medio*/main(void){
+int i=42;
+ prontf("La respuesta es %d\n"); 
+
+Para luego ejecutar en una terminal bash el siguiente comando:
+gcc -E hello2.c -o hello2.i
+Este comando lo que hace es preprocesar mi archivo hello2.c y sin compilarlo generar mi archivo hello2.i
+
+ Este tipo de archivo, que es generado por visual studio basic se puede usar para diagnosticar y corregir errores en el momento de la compilación
+Es un archivo de código fuente que puede ser compilado en formato binario por un compilador. Estos compiladores, como ya sabemos, son a menudo
+parte de los editores de código fuente y herramientas de desarrollo
+
+1 D
+La semantica de la primera linea en el código de hello3.c no es nada más ni nada menos que la forma "larga" por 
+asi decirlo de declarar la función "printf", en este segundo caso no se usa una biblioteca estandar como por ejemplo
+<stdio.h> que ya tiene en su libreria una función declarada como printf. Ambas declaraciones de la función es decirl 
+la delcarada con <stdio.h> (hello2.c) como la declaración "manual-escrita", es decir la más larga, en (hello3.c) tienen
+el mismo objetivo que es declarar una funcion la cual imprime por pantalla algo deseado en este caso "la respuesta..."
+
+1 E
+No sabriamos decir si hasta ahora realicé el trabajo practico como correpsonde, pero las diferencias que puedo notar entre uno y otro,
+entre hello2.i y hello3.i es que cada uno pertenece a un helloX.c distinto, ya que lo que me aparece en las lineas de código es lo mismo:
+
+# 1 "hello2.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "hello2.c"
+
+vs 
+
+# 1 "hello3.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "hello3.c"
+
+
+2 A 
+Generamos el archivo hello3.s con el siguiente código:  $ gcc -S hello3.c
+
+2 B 
+Comenzamos con la corrección de ERRORES. El error principal que nos salta es: " error: expected declaration or statement at end of input"
+Este error indica, que falta un }, falta cerrar el cuerpo, en este caso del main.
+
+Posteriormente generamos hello4.s con el mismo código anterior en la terminal de bash. $ gcc -S hello4.c
+
+
+2 c
+
+El lenguaje creado a partir de la puesta en marcha del comando anteriormente mencionado, es un lenguaje de bajo nivel para programación. Esto
+quiere decir que está compuesto por un conjunto de palabras en lenguaje de maquina,  y que representa instrucciones básicas para las computadoras,
+procesadores, controladores y entre otros integrantes de los circuidos programables. Representa simbólicamente a los códigos de máquina binarios.
+Por esto se llega a la conclusión, que este lenguaje, nos da una mano a nosotros, como programadores, para entender el lenguaje de la programacion 
+ayudandonos, de manera expresiva, a entender las instrucciones ejecutadas por un codigo hacia el microprocesador. 
+
+2 D 
+Ejecutamos el siguiente código en la terminal de bash; as -o hello4.o hello4.s -Wall
+
+Este comando lo que hace es que se ensamble hello4.s en hello4.o sin vincularlo. Esto nos arroja en nuestra terminal el siguiente mensaje:
+GAS LISTING hello4.s                    page 1
+
+
+   1                            .file   "hello4.c"
+   2                            .text
+   3                            .def    ___main;        .scl    2;      .type   32;     .endef
+   4                            .section .rdata,"dr"
+   5                    LC0:
+   6 0000 4C612072              .ascii "La respuesta es %d\12\0"
+   6      65737075
+   6      65737461
+   6      20657320 
+   6      25640A00
+   7                            .text
+   8                            .globl  _main
+   9                            .def    _main;  .scl    2;      .type   32;     .endef
+  10                    _main:
+  11                    LFB0:
+  12                            .cfi_startproc
+  13 0000 55                    pushl   %ebp
+  14                            .cfi_def_cfa_offset 8
+  15                            .cfi_offset 5, -8
+  16 0001 89E5                  movl    %esp, %ebp
+  17                            .cfi_def_cfa_register 5
+  18 0003 83E4F0                andl    $-16, %esp
+  19 0006 83EC20                subl    $32, %esp
+  20 0009 E8000000              call    ___main
+  20      00
+  21 000e C744241C              movl    $42, 28(%esp)
+  21      2A000000
+  22 0016 C7042400              movl    $LC0, (%esp)
+  22      000000
+  23 001d E8000000              call    _prontf
+  23      00
+  24 0022 B8000000              movl    $0, %eax
+  24      00
+  25 0027 C9                    leave
+  26                            .cfi_restore 5
+  27                            .cfi_def_cfa 4, 4
+  28 0028 C3                    ret
+  29                            .cfi_endproc
+  30                    LFE0:
+  31                            .ident  "GCC: (MinGW.org GCC Build-2) 9.2.0"
+  32 0029 909090                .def    _prontf;        .scl    2;      .type   32;     .endef
+
+
+El cual luego de su ejecucicón nos genera un archivo "hello4.o"
+
+3 a
+Vinculamos hello4.o con la biblioteca estandar y generamos el ejecutable con el siguiente comando: gcc -o hello4 hello4.o. Todo esto en 
+nuestra terminal de bash.
+
+No vincula, salta el siguiente error: undefined reference to `prontf'
+
+Este error indica que no reconoce "prontf" como función ya que está mal escrito y la función que reconoce la bilbioteca estandar es printf
+para corregir este error creamos hello5...
+
+3b
+Realizamos un copy-paste de nuestro código de "hello4.c" y lo pegamos en nuestro nuevo archivo "hello5.c" Posteriormente corregimos el error
+proporcionado por "prontf" cambiando la función por "printf" que es la ya declarada. Luego, siguiendo las instrucciones, volvemos a ejecutar
+el comando vinculador en nuestra terminal de bash. Esta vez cambiando el código por: gcc -o hello5  hello5.o
+Antes de realizar esto lo que tenemos que hacer es generar nuestro archivo hello5.o, repetimos lo mismo que vimos en el punto 2b y 2c
+
+Primero comenzamos en crear hello5.s es decir nuestro lenguaje assembler del hello5 con el comando: gcc -S hello5.c
+Luego, generamos con el comando: as -o hello5.o hello5.s -Wall
+Por fin tenemos generado nuestro hello5.o, con este y el siguiente comando:
+gcc -o hello5 hello5.o generaremos nuestro ejecutable, previa corrección de errores. 
+
+Nos salta el siguiente error; undefined reference to `WinMain@16' collect2.exe: error: ld returned 1 exit status
+
+El cual indica que o falta la funcion main o está mal el codigo, por lo tanto lo arreglamos siguiendo el instructivo.
+
+4 a
+Creamos hello6.c para corregir los errores de hello5.c, copiando y pegando lo que tenía el código.
+Realizamos los mismos pasos anteriores, generamos hello6.s y luego nuestro hello6.o 
+Para finalizar ejecutamos el código gcc -o hello6 hello6.o para generar nuestro ejecutable.
+Pero nos vuelve a saltar el mismo error que en hello5.c esto es debido a que no corregimos el error.
+"undefined reference to `WinMain@16'
+collect2.exe: error: ld returned 1 exit status"
+
+Para corregir este error, lo unico que se hizo fue: Cambiar la posicion de la linea: "int printf(const char * restrict s, ...);"
+Dentro del MAIN.
+
+Luego se volvieron a aplicar todos los comandos nuevamente:
+gcc -S hello6.c 
+as -o hello6.o hello6.s -Wall
+gcc -o hello6 hello6.o
+
+Para por fin conseguir el ejecutable.
