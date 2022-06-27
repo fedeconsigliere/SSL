@@ -24,6 +24,13 @@ asi decirlo de declarar la función "printf", en este segundo caso no se usa una
 <stdio.h> que ya tiene en su libreria una función declarada como printf. Ambas declaraciones de la función es decirl 
 la delcarada con <stdio.h> (hello2.c) como la declaración "manual-escrita", es decir la más larga, en (hello3.c) tienen
 el mismo objetivo que es declarar una funcion la cual imprime por pantalla algo deseado en este caso "la respuesta..."
+int printf(const char * restrict s, ...);
+Los puntos suspensivos indican una cantidad de elementos
+S indica una cadena de caracteres comunes y especifica el tipo de dato de una variable
+Define una funcion print F que recibe como primer parametro una char constante
+Const: Mediante el puntero no puedo modificar el valor de la cadena (es de uso más frecuente que el restrict)
+restric: unico puntero que apunta a la cadena, por lo tanto le da una guia de optimizacion
+a la lectura (No es de uso frecuente) - 
 
 1 E
 No sabriamos decir si hasta ahora realicé el trabajo practico como correpsonde, pero las diferencias que puedo notar entre uno y otro,
@@ -92,7 +99,7 @@ GAS LISTING hello4.s                    page 1
   19 0006 83EC20                subl    $32, %esp
   20 0009 E8000000              call    ___main
   20      00
-  21 000e C744241C              movl    $42, 28(%esp)
+  21 000e C744241C              movl    $42, 28(%esp) /*int i=42
   21      2A000000
   22 0016 C7042400              movl    $LC0, (%esp)
   22      000000
@@ -111,6 +118,9 @@ GAS LISTING hello4.s                    page 1
 
 
 El cual luego de su ejecucicón nos genera un archivo "hello4.o"
+No se puede leer en visual studio ya que es un código en bites
+Cada bite representan instrucciones a el microprocesador.
+
 
 3 a
 Vinculamos hello4.o con la biblioteca estandar y generamos el ejecutable con el siguiente comando: gcc -o hello4 hello4.o. Todo esto en 
@@ -153,3 +163,9 @@ as -o hello6.o hello6.s -Wall
 gcc -o hello6 hello6.o
 
 Para por fin conseguir el ejecutable.
+
+------- compiladoresHELLO 7
+gcc hello7.c -o hellosalida7.exe
+./hellosalida7.exe 
+
+En c no se necesita una declaracion previa, es buena practica hacerla pero no hace falta
